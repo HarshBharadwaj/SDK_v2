@@ -33,21 +33,57 @@ public class Pagination_SiteTest extends BaseTest {
         super.setUp();
         initFluent(driver);
         initTest();
+        maximizeWindow();
     }
 
     @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
-    @Test(description = "Pagination functionality test on search result page", dataProvider = "getUrl")
-    public void paginationSearchPageActions(String url, String query) throws Exception {
-        pagination_actions.goToWebsite(url);
-        maximizeWindow();
-        pagination_actions.searchQuery(query);
-        pagination_actions.testPaginationIsDisplayingOrNot();
-        pagination_actions.testPaginationIsWorkingOrNot();
-        pagination_actions.testPaginationBackArrowIsWorking();
-        pagination_actions.testPaginationForwardArrowIsWorking();
-        pagination_actions.testSelectedPageHighlightOrNot();
+    @Test(priority = 1, description = "Pagination is display or not", dataProvider = "getUrl")
+    public void testPaginationIsDisplayOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationIsDisplayingOrNot(url,query);
+    }
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 2,description = "Pagination is working or not", dataProvider = "getUrl")
+    public void testPaginationIsWorkingOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationIsWorkingOrNot(url,query);
+    }
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 3,description = "Pagination back arrow is working or not", dataProvider = "getUrl")
+    public void testPaginationBackArrowIsWorkingOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationBackArrowIsWorking(url,query);
+    }
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 4,description = "Pagination forward arrow is working or not", dataProvider = "getUrl")
+    public void testPaginationForwardArrowIsWorkingOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationForwardArrowIsWorking(url,query);
+    }
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 5,description = "Selected page is high lighted or not", dataProvider = "getUrl")
+    public void testSlelectedPaginationIsHighlightedOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testSelectedPageHighlightOrNot(url,query);
+    }
 
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 6,description = "Check pagination scenario in case of last page results", dataProvider = "getUrl")
+    public void checkPaginationScenarioInCaseOfLastPageResults(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationScenarioInCaseOfLastPageResults(url,query);
+    }
 
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 7,description = "Check pagination in case of sort.", dataProvider = "getUrl")
+    public void checkPaginationInCaseOfSort(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationInCaseOfSort(url,query);
+    }
+
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 8,description = "Check pagination in case of filter.", dataProvider = "getUrl")
+    public void checkPaginationInCaseOfFilter(String url, String query) throws InterruptedException {
+        pagination_actions.testPaginationInCaseOfFilter(url,query);
+    }
+
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 9,description = "Check number of items per page option.", dataProvider = "getUrl")
+    public void checkNumberOfItemsPerPageOption(String url, String query) throws InterruptedException {
+        pagination_actions.testNumberOfItemsPerPageOption(url,query);
     }
 
     private final String testFilePath = "target" + File.separator + "test-classes" + File.separator + "testData" + File.separator;

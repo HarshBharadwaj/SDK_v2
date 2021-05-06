@@ -118,13 +118,13 @@ public class Search_SiteActions extends Search_Page {
 
     }
 
-    public void testGridViewAndListViewArePresentOrNot() {
-        await();
-        Assert.assertEquals(awaitForElementPresence(listViewClick),"true","List view is not getting displayed.");
+    public void testGridViewAndListViewArePresentOrNot() throws InterruptedException {
+        searchAction(unbxdSearchQuery);
+        Assert.assertEquals(listViewClick.isDisplayed(),true,"List view is not getting displayed.");
 //        if(awaitForElementPresence(listViewClick)){System.out.println("Test Case 7: Pass: List View is getting displayed");}
 //        else{System.out.println("Test Case 7: Fail: List View is getting displayed");}
         awaitForPageToLoad();
-        Assert.assertEquals(awaitForElementPresence(gridViewClick),"true","Grid view is not getting displayed.");
+        Assert.assertEquals(gridViewClick.isDisplayed(),true,"Grid view is not getting displayed.");
 //        if(awaitForElementPresence(gridViewClick)){System.out.println("Test Case 7: Pass: Grid View is getting displayed");}
 //        else{System.out.println("Test Case 7: Fail: Grid View is getting displayed");}
 
@@ -256,22 +256,12 @@ public class Search_SiteActions extends Search_Page {
 //    }
     }
 
-    public void strickenPriceIsDisplayOrNot()
-    {
-        await();
-        Assert.assertEquals(awaitForElementPresence(strickenPrice),"true","Stricken price is not getting displayed");
-//        if(awaitForElementPresence(strickenPrice)) {
-//            System.out.println("Test Case 6: Pass: Stricken Price is getting display");
-//        }else{            System.out.println("Test Case 6: Fail: Stricken Price is getting display");
-//        }
-
+    public void strickenPriceIsDisplayOrNot(String query) throws InterruptedException {
+        searchAction(query);
+        Assert.assertEquals(strickenPrice.isDisplayed(),true,"Stricken price is not getting displayed");
     }
     public void testBlankSpaceInSearchedBox() throws InterruptedException {
         String oldUrl=getDriver().getCurrentUrl();
-//        searchBox.clear();
-//        searchBox.fill().with(blankSpace);
-//        searchBox.click();
-//        Thread.sleep(3000);
         searchAction(blankSpace);
         String newUrl=getDriver().getCurrentUrl();
         Assert.assertEquals(oldUrl,newUrl,"Fail: Search is working for blank space.");
@@ -301,10 +291,7 @@ public class Search_SiteActions extends Search_Page {
     }
 
     public void checkForSpecialCharactersAreDisplayedFine() throws InterruptedException {
-//        searchBox.clear();
-//        searchBox.fill().with(specialCharacterQuery);
-//        searchBoxClick.click();
-//        Thread.sleep(3000);
+
         searchAction(specialCharacterQuery);
         Assert.assertEquals(searchResultQuery.getText(),specialCharacterQuery,"Search using special characcter is not working.");
 //        if(searchResultQuery.getText().equals(specialCharacterQuery)) {
@@ -361,10 +348,7 @@ public class Search_SiteActions extends Search_Page {
     }
 
     public void singleWordSpellErrorIsWorking() throws InterruptedException {
-//        searchBox.clear();
-//        searchBox.fill().with(spellMistakeSingleWorld);
-//        searchBoxClick.click();
-//        Thread.sleep(3000);
+
         searchAction(spellMistakeSingleWorld);
         Assert.assertEquals(spellCorrectWord.getText(),spellCorrectSingleWord,"Spell correct for single word is not working well");
        //if(spellCorrectWord.getText().equals(spellCorrectSingleWord)){System.out.println("Test Case 21: Pass: Spell correct for single word is working well");}
@@ -520,7 +504,9 @@ public class Search_SiteActions extends Search_Page {
         for(WebElement e: allProductsTitle)
         {
             if(e.getText().equalsIgnoreCase("red")==true) f=0;
-            else{f=1;break;}
+            else{f=1;
+            //*screen sort**//
+            break;}
         }
         Assert.assertEquals(f,0,"Search terms is not getting displayed on product title");
         //if(f==0)System.out.println("Pass: Search terms is getting displayed on product title");
@@ -576,8 +562,7 @@ public class Search_SiteActions extends Search_Page {
         }
 
     public void searchBoxPlaceHolderIsDisplayOrNot() {
-        await();
-        awaitForPageToLoad();
+
         Assert.assertTrue(placeHolder.isDisplayed(),"Search box place holder is not getting displayed.");
         //Assert.assertEquals(awaitForElementPresence(placeHolder),"true","Search box place holder is not getting displayed.");
         //System.out.println("Test Case 2: Pass: searchBox PlaceHolder is getting Display");

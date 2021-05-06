@@ -106,7 +106,7 @@ public class searchPage_Test extends BaseTest {
     @Test(description = "Check stricken price is display or not", dataProvider = "getUrl", priority = 11)
     public void testStrickenPriceIsDisplayOrNot(String url,String query) throws Exception {
         search_SiteActions.goToWebsite(url);
-        search_SiteActions.strickenPriceIsDisplayOrNot();
+        search_SiteActions.strickenPriceIsDisplayOrNot(query);
     }
 
     @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
