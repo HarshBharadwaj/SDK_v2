@@ -121,6 +121,7 @@ public class searchPage_Test extends BaseTest {
     public void testListViewClick(String url,String query) throws Exception {
         search_SiteActions.goToWebsite(url);
         search_SiteActions.testListViewClick();
+
     }
 
     @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")

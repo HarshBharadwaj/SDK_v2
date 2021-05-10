@@ -12,8 +12,7 @@ import java.util.List;
 
 public class Pagination_Actions extends Pagination_Page {
     SoftAssert softAssert = new SoftAssert();
-    //public Select sortList= new Select(getDriver().findElement(By.xpath(sortByDropdown)));
-    //Select sortList;
+
 
 
     public Pagination_Actions goToWebsite(String url) {

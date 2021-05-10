@@ -491,10 +491,7 @@ public class Search_SiteActions extends Search_Page {
                 f = 1;break;            }
         }
         Assert.assertEquals(f,0,"Price is not displaying in two decimal format all over the site");
-//        if(f==1)
-//            System.out.println("Fail: Price is not displaying in two decimal format all over the site");
-//        else
-//            System.out.println("Pass: Price is displaying in two decimal format all over the site");
+
     }
 
     public void testWhetherResultsAreDisplayingAsPerTheSearchedTerm_InTermsOfColor() throws InterruptedException {

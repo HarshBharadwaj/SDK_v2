@@ -40,6 +40,7 @@ public class Pagination_SiteTest extends BaseTest {
     @Test(priority = 1, description = "Pagination is display or not", dataProvider = "getUrl")
     public void testPaginationIsDisplayOrNot(String url, String query) throws InterruptedException {
         pagination_actions.testPaginationIsDisplayingOrNot(url,query);
+
     }
     @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
     @Test(priority = 2,description = "Pagination is working or not", dataProvider = "getUrl")
