@@ -34,6 +34,8 @@ public class Pagination_Page extends UiBase {
     public String unbxdPageSizeDropdown="//select[@class='UNX-pageSize__dropdown']";
 //    @FindBy(xpath = "//button[text()='>']")
 //    public static FluentWebElement forwardArrow;
+    public  String unbxdProductOnPage="//div[@class='UNX-productCard__container']";
+    public String paginationUnbxd="//div[@class='UNX-pagination__pageNavigation']";
     public String paginationArrowIcon="//button[@class='UNX-pageNavigation__button -action']";
     public void clickPage() throws InterruptedException {
         forwardArrow.click();

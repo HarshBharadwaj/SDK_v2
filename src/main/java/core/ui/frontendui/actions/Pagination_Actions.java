@@ -163,5 +163,55 @@ public class Pagination_Actions extends Pagination_Page {
         System.out.println("");
     }
 
+    public void testNumberOfItemsPerPageOptionWorkingOrNot(String url, String query) throws InterruptedException {
+        goToWebsite(url);
+        searchQuery(unbxdSearchQuery);
+        int totalResult=totalSearchResult();
+        Select pageSize=new Select(getDriver().findElement(By.xpath(unbxdPageSizeDropdown)));
+        List<WebElement>allPageSizeOptions=pageSize.getOptions();
+        for(int i=allPageSizeOptions.size()-1;i>=0;i--)
+        {
+            pageSize.selectByVisibleText(allPageSizeOptions.get(i).getText());
+            Thread.sleep(2000);
+            int pageSizeSRP=Integer.parseInt(allPageSizeOptions.get(i).getText());
+            if(totalResult>=pageSizeSRP)
+            {
+                List<WebElement>productPresentOnthePage=getDriver().findElements(By.xpath(unbxdProductOnPage));
+                Assert.assertEquals(productPresentOnthePage.size(),pageSizeSRP,"Fail: Number of items per page options is not working");
+                if(productPresentOnthePage.size()==pageSizeSRP)
+                    System.out.println("Pass: Number of items per page options is working["+pageSizeSRP+"]");
+                else
+                    System.out.println("Fail: Number of items per page options is not working for page size:["+pageSizeSRP+"]");
+            }
+            else { System.out.println("Skip: Test case get a skip for page size:["+pageSizeSRP+"], because search result value is:["+totalResult+"]"); }
+
+        }
+    }
+
+    public void testSelectedPageOptionIsShowingAsHighlighted(String url, String query) throws InterruptedException {
+        goToWebsite(url);
+        searchQuery(query);
+        Select pageSize=new Select(getDriver().findElement(By.xpath(unbxdPageSizeDropdown)));
+        List<WebElement> allPageSize=pageSize.getOptions();
+        String maxPageSizeValue=allPageSize.get(allPageSize.size()-1).getText();
+        pageSize.selectByVisibleText(maxPageSizeValue);
+        Thread.sleep(2000);
+        Assert.assertEquals(pageSize.getFirstSelectedOption().getText(),maxPageSizeValue,"Selected page option is not showing as highlighted");
+        //if(pageSize.getFirstSelectedOption().getText().equals("15")) { System.out.println("Pass: Selected page option is showing as highlighted"); }
+        //else {System.out.println("Fail: Selected page option is not showing as highlighted");}
+
+    }
+
+    public void testFooterDisplayingPaginationOptionOrNot(String url, String query) throws InterruptedException {
+        goToWebsite(url);
+        searchQuery(query);
+        List<WebElement>paginationCount=getDriver().findElements(By.xpath(paginationUnbxd));
+        Assert.assertEquals(paginationCount.get(1).isDisplayed(),true,"Footer pagination is not getting displayed");
+//        if(paginationCount.get(1).isDisplayed())
+//            System.out.println("Pass: Footer pagination is getting displayed");
+//        else
+//            System.out.println("Fail: Footer pagination is not getting displayed");
+    }
+
 
 }

@@ -86,6 +86,25 @@ public class Pagination_SiteTest extends BaseTest {
         pagination_actions.testNumberOfItemsPerPageOption(url,query);
     }
 
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 10,description = "Check number of items per page option working or not.", dataProvider = "getUrl")
+    public void checkNumberOfItemsPerPageOptionWorkingOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testNumberOfItemsPerPageOptionWorkingOrNot(url,query);
+    }
+
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 11,description = "Check selected page option is showing as highlighted or not.", dataProvider = "getUrl")
+    public void checkSelectedPageOptionIsShowingAsHighlighted(String url, String query) throws InterruptedException {
+        pagination_actions.testSelectedPageOptionIsShowingAsHighlighted(url,query);
+    }
+
+    @FileToTest(value = "/frontEndTestData/SanitySearchUrl.json")
+    @Test(priority = 12,description = "Check footer displaying pagination option or not.", dataProvider = "getUrl")
+    public void checkFooterDisplayingPaginationOptionOrNot(String url, String query) throws InterruptedException {
+        pagination_actions.testFooterDisplayingPaginationOptionOrNot(url,query);
+    }
+
+
     private final String testFilePath = "target" + File.separator + "test-classes" + File.separator + "testData" + File.separator;
 
     @DataProvider(name = "getUrl")
